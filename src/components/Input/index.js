@@ -7,15 +7,13 @@ const invalidInput = {borderColor: 'red'}
 const Input = ({input, type, label, meta: {touched, error, warning}, ...custom}) => {
   return (
     <React.Fragment>
-      <div>
-        <input
-          type={type}
-          style={touched && error ? invalidInput : {}}
-          placeholder={label}
-          {...input}
-          {...custom}
-        />
-      </div>
+      <input
+        type={type}
+        style={touched && error ? invalidInput : {}}
+        placeholder={label}
+        {...input}
+        {...custom}
+      />
       {touched && error && <Error error={error} touched={touched} />}
     </React.Fragment>
   )

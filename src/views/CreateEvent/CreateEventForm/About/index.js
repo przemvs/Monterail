@@ -1,16 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
-import { Input, Radio, TextArea } from 'components'
+import { Input, TextArea } from 'components'
 import { FormGroup, Title } from '../FormGroup'
 import { InputGroup, Label, Value, ValueGroup } from 'components/InputGroup'
+import Payment from './Payment'
 
 class About extends Component {
   state = {
-    payment: [
-      {value: 'free', selected: true},
-      {value: 'paid', selected: false}
-    ],
     descriptionLength: 0
   }
 
@@ -60,7 +57,7 @@ class About extends Component {
         <InputGroup>
           <Label>Payment</Label>
           <Value>
-            <Field component={Radio} name='payment' defaultValue='free' array={this.state.payment} />
+            <Field component={Payment} name='paid_event' defaultValue='free' />
           </Value>
         </InputGroup>
         <InputGroup>

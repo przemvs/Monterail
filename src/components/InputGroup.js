@@ -46,10 +46,11 @@ const ValueGroup = styled.div`
   
   input[type=date] {
     margin-right: 0.5em;
+    max-width: 11em;
   }
   
   input[type=time] {
-    max-width: 5.5em;
+    max-width: 6.5em;
     margin: 0 0.5em;
   }
 `
