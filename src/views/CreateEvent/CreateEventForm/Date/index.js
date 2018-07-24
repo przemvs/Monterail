@@ -32,8 +32,8 @@ class Date extends Component {
                 max='11:59'
               />
               <Field component={Radio} name='timeFormat' defaultValue='AM' />
-              {((meta.date && meta.date.touched) || (meta.time && meta.time.touched)) && errors && errors.dateTime && <Error error={errors.dateTime} />}
             </ValueGroup>
+            {((meta.date && meta.date.touched) || (meta.time && meta.time.touched)) && errors && errors.dateTime && <Error error={errors.dateTime} />}
           </Value>
         </InputGroup>
         <InputGroup>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import {Field, getFormValues} from 'redux-form'
-import { Input, TextArea, Radio } from 'components'
+import { Input, TextArea, Radio, Select } from 'components'
 import { FormGroup, Title } from '../FormGroup'
 import { InputGroup, Label, Value, ValueGroup } from 'components/InputGroup'
 import {PaymentItem, PaymentStyle} from './PaymentStyle'
@@ -58,10 +58,12 @@ class About extends Component {
         <InputGroup>
           <Label>Category</Label>
           <Value>
-            <select name='category'>
-              <option disabled selected>Select category</option>
-              {categories.map((category, index) => <option key={index} value={category.id}>{category.name}</option>)}
-            </select>
+            <Field
+              name='category_id'
+              label='Select category'
+              component={Select}
+              options={categories}
+            />
           </Value>
         </InputGroup>
         <InputGroup>
