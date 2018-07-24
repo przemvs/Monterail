@@ -1,34 +1,29 @@
-/* eslint-disable */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 
 class Radio extends Component {
-  componentDidMount(){
-    this.handleChange(this.props.defaultValue)
+  componentDidMount () {
+    const {input, defaultValue} = this.props
+    input.onChange(!!defaultValue)
   }
 
-  handleChange = type => {
-    console.log(this.props.input)
-    this.props.input.onChange(type)
+  handleChange = () => {
+    this.props.input.onChange(!this.props.input.value)
   }
 
   render () {
-    const {name, array} = this.props
+    const {input, label, checked} = this.props
+
     return (
       <div>
-        {array.map((radio, index) => {
-            return (
-              <div key={index} onClick={() => this.handleChange(radio.value)}>
-                <input
-                  type="radio"
-                  name={name}
-                  value={radio.value}
-                  checked={radio.value === radio.selected}
-                />
-                <label htmlFor={radio.valie}>{radio.value}</label>
-              </div>
-            )
-          }
-        )}
+        <div onClick={this.handleChange}>
+          <input
+            type='radio'
+            name={input.name}
+            checked={checked}
+          />
+          <label htmlFor={input.name}>{label}</label>
+        </div>
       </div>
     )
   }
