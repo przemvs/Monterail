@@ -14,7 +14,7 @@ export const validate = values => {
   }
 
   if (!values.date || !values.time) {
-    errors.time = 'You must select date and time'
+    errors.dateTime = 'You must select date and time'
   }
 
   if (!values.coordinator) {

@@ -10,7 +10,6 @@ import {reduxForm} from 'redux-form'
 class CreateEventForm extends Component {
   render () {
     const {employees, categories, handleSubmit} = this.props
-    console.log(this.props)
 
     return (
       <form>

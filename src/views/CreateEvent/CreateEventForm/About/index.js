@@ -1,14 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import { Field } from 'redux-form'
-import { Input, TextArea } from 'components'
+import {Field, getFormValues} from 'redux-form'
+import { Input, TextArea, Radio } from 'components'
 import { FormGroup, Title } from '../FormGroup'
 import { InputGroup, Label, Value, ValueGroup } from 'components/InputGroup'
-import Payment from './Payment'
+import {PaymentItem, PaymentStyle} from './PaymentStyle'
+import Fee from './Fee'
+import {connect} from 'react-redux'
 
 class About extends Component {
   state = {
-    descriptionLength: 0
+    descriptionLength: 0,
+    isPaid: false,
+    isChecked: true
   }
 
   countCharacters = e => {
@@ -16,8 +20,14 @@ class About extends Component {
     this.setState({descriptionLength: length})
   }
 
+  changeEventType = () => {
+    this.setState((prevState) => {
+      return {isChecked: !prevState.isChecked}
+    })
+  }
+
   render () {
-    const {categories} = this.props
+    const {categories, values} = this.props
 
     return (
       <FormGroup>
@@ -57,7 +67,39 @@ class About extends Component {
         <InputGroup>
           <Label>Payment</Label>
           <Value>
-            <Field component={Payment} name='paid_event' defaultValue='free' />
+            <PaymentStyle>
+              <PaymentItem>
+                <Field
+                  onClick={() => this.changeEventType}
+                  name='paid_event'
+                  component={Radio}
+                  defaultValue
+                  checked={values && values.paid_event === false}
+                  label='Free event'
+                />
+              </PaymentItem>
+
+              <PaymentItem>
+                <Field
+                  onClick={() => this.changeEventType}
+                  name='paid_event'
+                  component={Radio}
+                  checked={values && values.paid_event === true}
+                  label='Paid event'
+                />
+              </PaymentItem>
+
+              {values && values.paid_event && (
+                <Fee>
+                  <Field
+                    component={Input}
+                    name='event_fee'
+                    type='number'
+                    placeholder='Fee'
+                  /> <span>$</span>
+                </Fee>
+              )}
+            </PaymentStyle>
           </Value>
         </InputGroup>
         <InputGroup>
@@ -78,4 +120,6 @@ class About extends Component {
   }
 }
 
-export default About
+export default connect(state => ({
+  values: getFormValues('createEventForm')(state)
+}))(About)
