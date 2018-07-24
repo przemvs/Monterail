@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
-import { Input } from 'components'
+import { Input, Select } from 'components'
 import { FormGroup, Title } from '../FormGroup'
 import { InputGroup, Label, Value } from 'components/InputGroup'
 
@@ -15,19 +15,20 @@ class Coordinator extends Component {
         <InputGroup>
           <Label>Responsible <span>*</span></Label>
           <Value>
-            <select name='coordinator'>
-              <option disabled>Me</option>
-              <option selected value='99'>Me - James Jenkins</option>
-              <option disabled>Others</option>
-              {employees.map((employee, index) => <option key={index} value={employee.id}>{employee.name} {employee.lastname}</option>)}
-            </select>
+            <Field
+              name='coordinator'
+              defaultValue={7}
+              label='Select coordinator'
+              component={Select}
+              options={employees}
+            />
           </Value>
         </InputGroup>
         <InputGroup>
           <Label>Email</Label>
           <Value>
             <Field
-              name='responsible'
+              name='email'
               type='text'
               component={Input}
               placeholder='Make it short and clear'

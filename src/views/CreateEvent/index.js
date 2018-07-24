@@ -9,12 +9,26 @@ class CreateEvent extends Component {
   handleSubmit = (data) => {
     const res = {...data}
 
+    const coordinatorData = employees.find(key => key.id === res.coordinator)
+    res.coordinator = {
+      id: coordinatorData.id.toString(),
+      email: coordinatorData.email
+    }
+
     if (res.event_fee) {
       res.event_fee = Number(res.event_fee)
     }
 
+    if (res.reward) {
+      res.reward = Number(res.reward)
+    }
+
     if (!res.paid_event) {
       delete res.event_fee
+    }
+
+    if (res.email) {
+      delete res.email
     }
 
     // I can use moment.js but for such trivial case i think it's enough
