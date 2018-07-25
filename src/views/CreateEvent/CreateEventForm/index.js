@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, {Component, Fragment} from 'react'
+import PropTypes from 'prop-types'
 import About from './About'
 import Coordinator from './Coordinator'
 import Date from './Date'
@@ -26,6 +26,13 @@ class CreateEventForm extends Component {
       </Fragment>
     )
   }
+}
+
+CreateEventForm.propTypes = {
+  employees: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  categories: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  handleSubmit: PropTypes.func,
+  submitSucceeded: PropTypes.bool
 }
 
 export default reduxForm({form: 'createEventForm', validate})(CreateEventForm)

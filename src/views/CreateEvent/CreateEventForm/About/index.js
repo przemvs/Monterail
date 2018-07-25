@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {Field, getFormValues} from 'redux-form'
 import { Input, TextArea, Radio, Select } from 'components'
 import { FormGroup, Title } from '../FormGroup'
@@ -63,6 +63,7 @@ class About extends Component {
               label='Select category'
               component={Select}
               options={categories}
+              defaultValue={-1}
             />
           </Value>
         </InputGroup>
@@ -72,7 +73,7 @@ class About extends Component {
             <PaymentStyle>
               <PaymentItem>
                 <Field
-                  onClick={() => this.changeEventType}
+                  onChange={() => this.changeEventType}
                   name='paid_event'
                   component={Radio}
                   defaultValue
@@ -83,7 +84,7 @@ class About extends Component {
 
               <PaymentItem>
                 <Field
-                  onClick={() => this.changeEventType}
+                  onChange={() => this.changeEventType}
                   name='paid_event'
                   component={Radio}
                   checked={values && values.paid_event === true}
@@ -120,6 +121,11 @@ class About extends Component {
       </FormGroup>
     )
   }
+}
+
+About.propTypes = {
+  values: PropTypes.object,
+  categories: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default connect(state => ({

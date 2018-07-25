@@ -1,5 +1,5 @@
-/* eslint-disable */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { TimeFormat, TimeFormatItem } from './TimeFormat'
 
 class Radio extends Component {
@@ -7,7 +7,7 @@ class Radio extends Component {
     optionChecked: 'AM'
   }
 
-  componentDidMount(){
+  componentDidMount () {
     this.handleChange(this.props.defaultValue)
   }
 
@@ -24,26 +24,32 @@ class Radio extends Component {
       <TimeFormat>
         <TimeFormatItem onClick={() => this.handleChange('AM')} active={this.state.optionChecked === 'AM'}>
           <input
-            type="radio"
+            type='radio'
             name={name}
-            value="AM"
+            value='AM'
             checked={this.state.optionChecked === 'AM'}
           />
-          <label htmlFor="AM">AM</label>
+          <label htmlFor='AM'>AM</label>
         </TimeFormatItem>
 
         <TimeFormatItem onClick={() => this.handleChange('PM')} active={this.state.optionChecked === 'PM'}>
           <input
-            type="radio"
+            type='radio'
             name={name}
-            value="PM"
+            value='PM'
             checked={this.state.optionChecked === 'PM'}
           />
-          <label htmlFor="PM">PM</label>
+          <label htmlFor='PM'>PM</label>
         </TimeFormatItem>
       </TimeFormat>
     )
   }
+}
+
+Radio.propTypes = {
+  defaultValue: PropTypes.string,
+  name: PropTypes.string,
+  input: PropTypes.object
 }
 
 export default Radio

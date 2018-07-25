@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
 import { Input, Select } from 'components'
 import { FormGroup, Title } from '../FormGroup'
@@ -38,6 +38,10 @@ class Coordinator extends Component {
       </FormGroup>
     )
   }
+}
+
+Coordinator.propTypes = {
+  employees: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 
 export default Coordinator
