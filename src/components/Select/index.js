@@ -15,7 +15,7 @@ class Select extends Component {
   handleChange = val => this.props.input.onChange(Number(val.target.value))
 
   render () {
-    const {name, options, label, touched, error, defaultValue, input} = this.props
+    const {name, options, label, touched, error, defaultValue} = this.props
 
     options.sort((a, b) => {
       if (b.id === defaultValue) {
@@ -26,8 +26,8 @@ class Select extends Component {
     return (
       <Fragment>
         <div>
-          <select name={name} value={input.value ? input.value : defaultValue} style={touched && error ? invalidSelect : {}} onChange={this.handleChange}>
-            <option disabled selected={!defaultValue}>{label}</option>
+          <select defaultValue={defaultValue} name={name} style={touched && error ? invalidSelect : {}} onChange={this.handleChange}>
+            <option disabled value={-1}>{label}</option>
             {options.map((item, index) =>
               <option key={index} value={item.id}>{item.name}{item.lastname && ` ${item.lastname}`}</option>
             )}
@@ -40,13 +40,13 @@ class Select extends Component {
 }
 
 Select.propTypes = {
-  options: PropTypes.object,
+  options: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   name: PropTypes.string,
   label: PropTypes.string,
   touched: PropTypes.bool,
   error: PropTypes.string,
   input: PropTypes.object,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 export default Select

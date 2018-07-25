@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {Field, getFormMeta, getFormSyncErrors} from 'redux-form'
-import {Input} from 'components'
+import {Input, Error} from 'components'
 import Radio from './Radio'
 import {FormGroup, Title} from '../FormGroup'
 import {InputGroup, Label, Value, ValueGroup} from 'components/InputGroup'
 import {connect} from 'react-redux'
-import Error from '../../../../components/Error'
 
 class Date extends Component {
   render () {
@@ -52,6 +51,11 @@ class Date extends Component {
       </FormGroup>
     )
   }
+}
+
+Date.propTypes = {
+  errors: PropTypes.object,
+  meta: PropTypes.object
 }
 
 export default connect(state => ({

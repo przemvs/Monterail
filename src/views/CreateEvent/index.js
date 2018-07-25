@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import {Container} from 'components'
 import CreateEventForm from './CreateEventForm'
@@ -9,7 +8,7 @@ class CreateEvent extends Component {
   handleSubmit = (data) => {
     const res = {...data}
 
-    const coordinatorData = employees.find(key => key.id === res.coordinator)
+    const coordinatorData = employees.find(({id}) => id === res.coordinator)
     res.coordinator = {
       id: coordinatorData.id.toString(),
       email: coordinatorData.email

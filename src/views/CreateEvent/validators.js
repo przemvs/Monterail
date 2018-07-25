@@ -1,9 +1,10 @@
 import {isBefore, isEmail} from 'validator'
-import moment from 'moment'
 
 export const validate = values => {
   const errors = {}
-  const currentDate = moment().format('YYYY-MM-DD')
+
+  const date = new Date()
+  const currentDate = date.toISOString().split('T')[0]
 
   if (!values.title) {
     errors.title = 'Title cannot be empty'
@@ -14,7 +15,7 @@ export const validate = values => {
   }
 
   if (values.description && values.description.length > 140) {
-    errors.description = 'You reached characters limit'
+    errors.description = 'You reached max characters limit'
   }
 
   if (values.date && isBefore(values.date, currentDate)) {
